@@ -93,7 +93,7 @@
     $(document).ready( function(){
         $(".button").on("click", function(event) {
 
-            console.log(1)
+            $('.barrier').css('display','block')
             event.preventDefault();
             html2canvas(document.getElementById("box"), {
                 allowTaint: true,
