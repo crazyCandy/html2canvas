@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .box img{
+            width: 100%;
+        }
+        .box input {
+
+            border: none;
+            position: absolute;
+            left: 31%;
+            top: 78.5%;
+            background: transparent;
+            color: #ffffff;
+            font-size: 26px;
+        }
+
+        button{
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="big_box">
+    <div class="box" id="box">
+        <img src="./9.jpg" alt="">
+        <input type="text" value="1234">
+    </div>
+    <button class="button">渲染</button>
+</div>
+
+</body>
+<script src='./jquery.min.js'></script>
+<script src="./html2canvas.js"></script>
+<script>
+    $(document).ready( function(){
+        $(".button").on("click", function(event) {
+            event.preventDefault();
+            html2canvas(document.getElementById("box"), {
+                allowTaint: true,
+                taintTest: false,
+                onrendered: function(canvas) {
+                    canvas.id = "mycanvas";
+                    //生成base64图片数据
+                    var dataUrl = canvas.toDataURL();
+                    var newImg = document.createElement("img");
+                    newImg.src =  dataUrl;
+                    document.body.appendChild(newImg);
+                }
+            });
+        });
+    });
+</script>
+</html>
