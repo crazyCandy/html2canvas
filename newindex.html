@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+
+    <title>candy-html2canvas</title>
+
+
+
+    <link rel="stylesheet" type="text/css" href="css/newindex.css">
+</head>
+<body>
+<div class="container">
+    <header></header>
+    <div class="main">
+        <div class="main-top">
+            <button data-src="2">查看图片</button>
+        </div>
+        <div class="main-middle">
+            <button style="background:url('https://p.jihes.com//1688/jihetemai/agent/poster/btn1.png') no-repeat center;background-size: contain;" data-index="1" class="btn1"></button>
+            <button style="left:37%;background:url('https://p.jihes.com/poster/6.png') no-repeat center;background-size: contain;" data-index="2" class="btn2"></button>
+            <button style="left:67%;background:url('https://p.jihes.com//1688/jihetemai/agent/poster/btn3.png') no-repeat center;background-size: contain;" data-index="3" class="btn3"></button>
+        </div>
+        <div class="main-footer">
+            <input type="text" name="youhuima" placeholder="请输入优惠码" class="youhuma">
+            <button></button>
+        </div>
+
+        <div class="container-middle">
+
+            <img src="https://p.jihes.com//poster/15.png" class="img1"/>
+            <img src="https://p.jihes.com/poster/14.png"/>
+        </div>
+    </div>
+
+
+
+    <!------------- 大图遮罩层  -------------->
+    <div class="zhezhao">
+        <img src="https://p.jihes.com/poster/9.jpg"/>
+        <input type="text" value=''>
+    </div>
+</div>
+</body>
+
+<script src="./jquery.min.js"></script>
+<script src="./layer/2.4/layer.js"></script>
+<script src="./layui/build/layui.js" charset="utf-8"></script>
+
+<script src="./html2canvas.js"></script>
+<script>
+
+
+</script>
+<script>
+//    //    console.log('dataSrc', dataSrc);
+//$('.main-footer button').click(function(){
+//    var youhuima = $('.youhuma').val();
+//    var type = $('.main-top button').attr('data-src');
+//    console.log('type',type);
+//    if(youhuima.length == 0 ){
+//        layer.msg('优惠码不能为空！',{time:1500});
+//        return false;
+//    }
+//    console.log('type', type);
+//    var tiaozhuanUrl = "poster_total.html?type="+type+"&num="+youhuima;
+//    $('#tiaozhuan').attr('href',tiaozhuanUrl);
+//});
+
+$(document).ready( function(){
+
+//    共用
+    function positive(type) {
+        switch(type){
+            case 1:
+//                $('.zhezhao img').css({"background":"url('https://p.jihes.com/poster/10.jpg') no-repeat center","background-size":"contain"});
+                $('.zhezhao img').attr('src','https://p.jihes.com/poster/10.jpg')
+
+                $('.zhezhao input').css({'positive':'absolute','left':'56.5%','top':'48%'})
+                break;
+            case 2:
+                $('.zhezhao img').attr('src','https://p.jihes.com/poster/9.jpg')
+                $('.zhezhao input').css({'positive':'absolute','left':'39.5%','top':'46.5%'})
+                break;
+            case 3:
+                $('.zhezhao img').attr('src','https://p.jihes.com/poster/11.jpg')
+                $('.zhezhao input').css({'positive':'absolute','left':'56%','top':'49%'})
+                break;
+        }
+    }
+
+    $('.main-middle button').click(function(){
+        var index = Number($(this).attr('data-index'));
+        console.log(index);
+        switch(index){
+            case 1:
+                console.log('com in');
+                $('.main-top').css({"background":"url('https://p.jihes.com/poster/3.jpg') no-repeat center","background-size":"cover"});
+                $('.main-top button').attr('data-src','1');
+                $('.btn2').css({"background":"url('https://p.jihes.com//1688/jihetemai/agent/poster/btn2.png') no-repeat center","background-size":"contain"})
+                $('.btn1').css({"background":"url('https://p.jihes.com/poster/5.png') no-repeat center","background-size":"contain"})
+                $('.btn3').css({"background":"url('https://p.jihes.com//1688/jihetemai/agent/poster/btn3.png') no-repeat center","background-size":"contain"})
+                break;
+            case 2:
+                $('.main-top').css({"background":"url('https://p.jihes.com/poster/2.jpg') no-repeat center","background-size":"cover"});
+                $('.main-top button').attr('data-src','2');
+                $('.btn1').css({"background":"url('https://p.jihes.com//1688/jihetemai/agent/poster/btn1.png') no-repeat center","background-size":"contain"})
+                $('.btn2').css({"background":"url('https://p.jihes.com/poster/6.png') no-repeat center","background-size":"contain"})
+                $('.btn3').css({"background":"url('https://p.jihes.com//1688/jihetemai/agent/poster/btn3.png') no-repeat center","background-size":"contain"})
+                break;
+            case 3:
+                $('.main-top').css({"background":"url('https://p.jihes.com/poster/4.jpg') no-repeat center","background-size":"cover"});
+                $('.main-top button').attr('data-src','3');
+                $('.btn1').css({"background":"url('https://p.jihes.com//1688/jihetemai/agent/poster/btn1.png') no-repeat center","background-size":"contain"})
+                $('.btn2').css({"background":"url('https://p.jihes.com//1688/jihetemai/agent/poster/btn2.png') no-repeat center","background-size":"contain"})
+                $('.btn3').css({"background":"url('https://p.jihes.com/poster/7.png') no-repeat center","background-size":"contain"})
+                break;
+        }
+    });
+
+
+//    查看图片的按钮
+    $('.main-top button').click(function(){
+        var youhuima = $('.youhuma').val();
+        console.log(youhuima)
+        var dataSrc = Number($(this).attr('data-src'));
+        console.log($(this).attr('data-src'));
+        $('.zhezhao input').val(youhuima);
+//        $('.container').css('background-color','#333');
+        $('.zhezhao').css('display','block');
+        positive(dataSrc)
+    });
+
+    $('.zhezhao').click(function(){
+        $('.zhezhao').css('display','none');
+//        $(this).empty()
+    });
+        $(".main-footer button").on("click", function(event) {
+//            $('.barrier').css('display','block')
+            var youhuima = $('.youhuma').val();
+            $('.zhezhao input').val(youhuima);
+            var type =Number($('.main-top button').attr('data-src')) ;
+
+            console.log(type)
+            if(youhuima.length == 0 ){
+                layer.msg('优惠码不能为空！',{time:1500});
+                return false;
+            }
+            $('.zhezhao').css('display','block');
+            positive(type)
+            event.preventDefault();
+            html2canvas(document.getElementById("box"), {
+                allowTaint: true,
+                taintTest: false,
+                onrendered: function(canvas) {
+                    canvas.id = "mycanvas";
+                    //生成base64图片数据
+                    var dataUrl = canvas.toDataURL();
+                    var newImg = document.createElement("img");
+                    newImg.src =  dataUrl;
+                    document.getElementsByClassName('zhezhao')[0].appendChild(newImg);
+                }
+            });
+        });
+
+//        $('.zhezhao').click(function () {
+//            $(this).css('display','none');
+//
+//        })
+    });
+</script>
+</html>
