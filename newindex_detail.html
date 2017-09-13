@@ -31,21 +31,50 @@
     </style>
 </head>
 <body>
+
 <div class="big_box">
     <div class="box" id="box">
         <img src="./9.jpg" alt="">
         <input type="text" value="1234">
     </div>
     <button class="button">渲染</button>
-
 </div>
-
 </body>
 <script src='./jquery.min.js'></script>
 <script src="./html2canvas.js"></script>
 <script>
+
+    function GetQueryString(name) {
+
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+
+        var r = window.location.search.substr(1).match(reg);
+
+        if (r!=null) return (r[2]); return null;
+
+    }
+  var index= GetQueryString(type)
+    switch(index){
+        case 1:
+//                $('.zhezhao img').css({"background":"url('https://p.jihes.com/poster/10.jpg') no-repeat center","background-size":"contain"});
+            $('.zhezhao img').attr('src','https://p.jihes.com/poster/10.jpg')
+            $('.zhezhao input').css({'positive':'absolute','left':'56.5%','top':'48%'})
+            break;
+        case 2:
+            $('.zhezhao img').attr('src','https://p.jihes.com/poster/9.jpg')
+            $('.zhezhao input').css({'positive':'absolute','left':'39.5%','top':'46.5%'})
+            break;
+        case 3:
+            $('.zhezhao img').attr('src','https://p.jihes.com/poster/11.jpg')
+            $('.zhezhao input').css({'positive':'absolute','left':'56%','top':'49%'})
+            break;
+    }
+</script>
+<script>
     $(document).ready( function(){
         $(".button").on("click", function(event) {
+
+            console.log(1)
             event.preventDefault();
             html2canvas(document.getElementById("box"), {
                 allowTaint: true,

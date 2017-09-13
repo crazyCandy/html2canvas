@@ -27,8 +27,8 @@
             <button style="left:67%;background:url('https://p.jihes.com//1688/jihetemai/agent/poster/btn3.png') no-repeat center;background-size: contain;" data-index="3" class="btn3"></button>
         </div>
         <div class="main-footer">
-            <input type="text" name="youhuima" placeholder="请输入优惠码" class="youhuma">
-            <button></button>
+            <input type="text" name="youhuima" placeholder="请输入优惠码">
+            <button><a id="tiaozhuan" href="https://crazycandy.github.io/html2canvas/newindex_detail.html"></a></button>
         </div>
 
         <div class="container-middle">
@@ -43,7 +43,6 @@
     <!------------- 大图遮罩层  -------------->
     <div class="zhezhao">
         <img src="https://p.jihes.com/poster/9.jpg"/>
-        <input type="text" value=''>
     </div>
 </div>
 </body>
@@ -54,46 +53,6 @@
 
 <script src="./html2canvas.js"></script>
 <script>
-
-
-</script>
-<script>
-//    //    console.log('dataSrc', dataSrc);
-//$('.main-footer button').click(function(){
-//    var youhuima = $('.youhuma').val();
-//    var type = $('.main-top button').attr('data-src');
-//    console.log('type',type);
-//    if(youhuima.length == 0 ){
-//        layer.msg('优惠码不能为空！',{time:1500});
-//        return false;
-//    }
-//    console.log('type', type);
-//    var tiaozhuanUrl = "poster_total.html?type="+type+"&num="+youhuima;
-//    $('#tiaozhuan').attr('href',tiaozhuanUrl);
-//});
-
-$(document).ready( function(){
-
-//    共用
-    function positive(type) {
-        switch(type){
-            case 1:
-//                $('.zhezhao img').css({"background":"url('https://p.jihes.com/poster/10.jpg') no-repeat center","background-size":"contain"});
-                $('.zhezhao img').attr('src','https://p.jihes.com/poster/10.jpg')
-
-                $('.zhezhao input').css({'positive':'absolute','left':'56.5%','top':'48%'})
-                break;
-            case 2:
-                $('.zhezhao img').attr('src','https://p.jihes.com/poster/9.jpg')
-                $('.zhezhao input').css({'positive':'absolute','left':'39.5%','top':'46.5%'})
-                break;
-            case 3:
-                $('.zhezhao img').attr('src','https://p.jihes.com/poster/11.jpg')
-                $('.zhezhao input').css({'positive':'absolute','left':'56%','top':'49%'})
-                break;
-        }
-    }
-
     $('.main-middle button').click(function(){
         var index = Number($(this).attr('data-index'));
         console.log(index);
@@ -123,55 +82,45 @@ $(document).ready( function(){
         }
     });
 
-
-//    查看图片的按钮
     $('.main-top button').click(function(){
-        var youhuima = $('.youhuma').val();
-        console.log(youhuima)
         var dataSrc = Number($(this).attr('data-src'));
         console.log($(this).attr('data-src'));
-        $('.zhezhao input').val(youhuima);
 //        $('.container').css('background-color','#333');
         $('.zhezhao').css('display','block');
-        positive(dataSrc)
+        switch(dataSrc){
+            case 1:
+//                $('.zhezhao img').css({"background":"url('https://p.jihes.com/poster/10.jpg') no-repeat center","background-size":"contain"});
+                $('.zhezhao img').attr('src','https://p.jihes.com/poster/10.jpg')
+                break;
+            case 2:
+                $('.zhezhao img').attr('src','https://p.jihes.com/poster/9.jpg')
+//                $('.zhezhao img').css({"background":"url('https://p.jihes.com/poster/9.jpg') no-repeat center","background-size":"contain"});
+                break;
+            case 3:
+                $('.zhezhao img').attr('src','https://p.jihes.com/poster/11.jpg')
+//                $('.zhezhao img').css({"background":"url('https://p.jihes.com/poster/11.jpg') no-repeat center","background-size":"contain"});
+                break;
+        }
+
+
     });
 
     $('.zhezhao').click(function(){
         $('.zhezhao').css('display','none');
-//        $(this).empty()
     });
-        $(".main-footer button").on("click", function(event) {
-//            $('.barrier').css('display','block')
-            var youhuima = $('.youhuma').val();
-            $('.zhezhao input').val(youhuima);
-            var type =Number($('.main-top button').attr('data-src')) ;
-
-            console.log(type)
-            if(youhuima.length == 0 ){
-                layer.msg('优惠码不能为空！',{time:1500});
-                return false;
-            }
-            $('.zhezhao').css('display','block');
-            positive(type)
-            event.preventDefault();
-            html2canvas(document.getElementById("box"), {
-                allowTaint: true,
-                taintTest: false,
-                onrendered: function(canvas) {
-                    canvas.id = "mycanvas";
-                    //生成base64图片数据
-                    var dataUrl = canvas.toDataURL();
-                    var newImg = document.createElement("img");
-                    newImg.src =  dataUrl;
-                    document.getElementsByClassName('zhezhao')[0].appendChild(newImg);
-                }
-            });
-        });
-
-//        $('.zhezhao').click(function () {
-//            $(this).css('display','none');
-//
-//        })
+    //    console.log('dataSrc', dataSrc);
+    $('.main-footer button').click(function(){
+        var youhuima = $('input').val();
+        var type = $('.main-top button').attr('data-src');
+        console.log('type',type);
+        if(youhuima.length == 0 ){
+            layer.msg('优惠码不能为空！',{time:1500});
+            return false;
+        }
+        console.log('type', type);
+        var tiaozhuanUrl = "https://crazycandy.github.io/html2canvas/newindex_detail.html?type="+type+"&num="+youhuima;
+        $('#tiaozhuan').attr('href',tiaozhuanUrl);
     });
+
 </script>
 </html>
