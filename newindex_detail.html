@@ -50,7 +50,7 @@
 <div class="big_box">
     <div class="box" id="box">
         <img src="./9.jpg" alt="">
-        <input type="text" value="1234">
+        <input type="text" value="">
     </div>
     <button class="button">渲染</button>
 </div>
@@ -72,7 +72,11 @@
         if (r!=null) return (r[2]); return null;
 
     }
-  var index= GetQueryString('type')
+    var index= GetQueryString('type')
+
+    var num= GetQueryString('num');
+    $('#box input').val(num)
+
     switch(index){
         case 1:
 //                $('.zhezhao img').css({"background":"url('https://p.jihes.com/poster/10.jpg') no-repeat center","background-size":"contain"});
